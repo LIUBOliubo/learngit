@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/* CSS Document */
+body, p, dl, ul, ol, h1, h2, h3, dt, dd, fieldset, legend {
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style: none; }
+
+em, i {
+  font-style: normal; }
+
+input {
+  border: 0; }
+
+img {
+  display: block;
+  border: 0; }
+
+a {
+  text-decoration: none; }
+
+body {
+  font: 12px "微软雅黑"; }
+
+.nav1 {
+  width: 100%;
+  height: 90px;
+  background: #fff; }
+
+.nav {
+  min-width: 100%;
+  min-width: 1100px;
+  height: 90px;
+  float: left;
+  padding-left: 1.5%;
+  margin: 0 auto;
+  position: relative; }
+
+.nav .title img {
+  width: 300px;
+  height: 90px;
+  display: block;
+  border: 0;
+  float: left; }
+
+.nav .title {
+  float: left;
+  width: 300px;
+  height: 90px; }
+
+.nav h3 {
+  font-size: 24px;
+  line-height: 40px;
+  height: 40px;
+  font-style: italic;
+  margin-top: 40px; }
+
+.you {
+  float: left;
+  width: 230px;
+  height: 850px;
+  background: greenyellow; }
+
+.you li {
+  text-align: center;
+  height: 200px;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #009; }
+
+.you .biao .lie > a {
+  display: block;
+  color: #fff; }
+
+.you .biao .lie:hover {
+  height: 200px; }
+
+.you .biao .lie li a:hover {
+  display: block;
+  height: 35px; }
+
+.you .biao .lie ul {
+  display: none; }
+
+.you .biao .lie:hover ul {
+  height: 200px;
+  display: inherit; }
+
+.you li a {
+  color: #FFF;
+  font-weight: 700; }
+
+.zuo {
+  margin-left: 0px;
+  background: #fff;
+  width: 1000px;
+  height: 850px;
+  float: left; }
+
+/*# sourceMappingURL=hou_index.css.map */

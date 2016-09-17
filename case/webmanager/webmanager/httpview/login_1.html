@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" type="text/css" href="css/login1.css">
+<script src="js/jquery-3.1.0.js"></script>
+<body>
+<div class="logo">
+    <div class="logo1"><a href="#"><img src="images/logo.jpg" /></a>
+        <span >欢迎登陆</span>
+    </div>
+</div>
+<div class="logo2">
+    <div class="logo2_1">
+        <div class="logo2_pic"><a href="#"><img src="images/loginPic.jpg"/> </a></div>
+        <div class="logo2_onload">
+            <h1>还没有账号？<a href="login_2.html" style="color: red"> 立即注册</a></h1>
+            <div class="b_onload">
+                <div class="text1">
+                    <h2>账户名</h2>
+                    <input  id="onload_name" type="text" placeholder="手机号/用户名/邮箱"/>
+                    <a class="user1"></a>
+                </div>
+                <div class="text1">
+                    <h2>密码</h2>
+                    <input  id="onload_password" type="password" placeholder=" 6-14位数字、字母组合"/>
+                    <a class="pword1"></a>
+                </div>
+                   <div class="text2">
+                       <input type="checkbox" style="float: left"value=""/>
+                       <p>请保存我这次的登陆信息</p>
+                       <a href="#">忘记密码？</a>
+                   </div>
+                <div class="text3">
+                    <button id="bt1">立即登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="foot">
+    <div class="foot1">
+        <div class="foot1_1">
+            <ul>
+                <li><a href="#">关于我们</a> </li>
+                <li><a href="#">联系我们</a> </li>
+                <li><a href="#">友情链接</a> </li>
+                <li style="border: none;"><a href="#">帮助中心</a> </li>
+            </ul>
+        </div>
+        <div class="foot1_2">
+            <p>ICP备案证书号：豫ICP备16005952号 &copy;2015-2016 美货到水果商城 版权所有，并保留所有权利。</p>
+        </div>
+        <div class="foot1_3">
+            <p>客服热线：400—6622-861 E-mail:vip@meihuodao.com<span><img src="images/login_foot_1.gif"></span><img src="images/login_foot_2.gif"/> <a href="#">81709669</a><img src="images/login_foot_2.gif"/> <a href="#">81709669</a></p>
+        </div>
+    </div>
+
+</div>
+<div style="height: 300px;"></div>
+<script>
+       $("#bt1").on("click",function () {
+           var username=$("#onload_name").val();
+           var userpassword=$("#onload_password").val()
+           if (username == "") {
+               $(".user1").html("用户名不能为空");
+               $(".user1").css({"color":"red"});
+               $(".text1 #onload_name").css({"border-color":"pink"});
+           } else if (userpassword == "") {
+               $(".pword1").html("密码不能为空");
+               $(".pword1").css({"color":"red"});
+               $(".text1 #onload_password").css({"border-color":"pink"});
+
+           } else {
+
+               var isrc = document.createElement("script");
+               isrc.src = " http://localhost:8080/user/loginget?name=" + username + "&password=" + userpassword + "&callback=fn3";
+               document.body.appendChild(isrc);
+           }
+       })
+        function fn3(result) {
+            if (result == 1) {
+                alert("登录成功");
+                window.location.href="index.html";
+            }
+        }
+
+       $("#onload_name").blur(function () {
+           if($(this).val()==""){
+               $(".user1").html("*用户名不能为空，请输入");
+               $(".user1").css({"color":"red"});
+               $(".text1 #onload_name").css({"border-color":"pink"});
+           }else {
+               var isrc=$("<script src='http://localhost:8080/user/CheckUserNameGet?username="+$(this).val()+"&callback=fn1'><\/script>");
+               /*var isrc=("<script><\/script>");
+                isrc.src=("http://10.9.163.115:8081/user/CheckUserNameGet?username="+$(this).val()+"&callback=fn1");
+                $("body").append(isrc);*/
+               $("body").append(isrc);
+           }
+       });
+
+        $("#onload_password").blur(function () {
+            if($(this).val()==""){
+                $(".pword1").html("*密码不能为空");
+                $(".pword1").css({"color":"red"});
+                $(".text1 #onload_password").css({"border-color":"pink"});
+            }
+                if($(this).val().length<=5||$(this).val().length>=15){
+                $(".pword1").html("*请输入6-14位密码");
+                $(".pword1").css({"color":"red"});
+                $(".text1 #onload_password").css({"border-color":"pink"});
+            }else {
+                $(".pword1").html("");
+                $(".text1 #onload_password").css({"border-color":"lightgreen"});
+            }
+
+        })
+       function fn1(result) {
+           if (result==1){
+               $(".user1").html("有效用户!");
+               $(".user1").css({"color":"lightgreen"});
+               $(".text1 #onload_name").css({"border-color":"lightgreen"});
+
+           }else {
+               $(".user1").html("*用户名不存在");
+               $(".user1").css({"color":"red"});
+               $(".text1 #onload_name").css({"border-color":"pink"});
+
+           }
+       }
+
+</script>
+</body>
+</html>

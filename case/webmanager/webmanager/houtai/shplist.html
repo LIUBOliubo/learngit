@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/shplist.css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+<div class="topbox">
+    <div class="top">
+        <ul class="topul">
+            <li class="topid">商品编号</li>
+            <li class="toptype">商品分类</li>
+            <li class="toppic">商品图片</li>
+            <li class="topname">商品名称</li>
+            <li class="topwords">商品详细信息</li>
+            <li class="topprice">商品价格</li>
+        </ul>
+    </div>
+</div>
+<div class="listbox">
+    <div class="list">
+
+    </div>
+</div>
+<div class="ye">
+        <button class="ye1">上一页</button>
+         <i>第<p></p>页</i>
+        <button class="ye2">下一页</button>
+</div>
+<script>
+    $(function () {
+        var arrlist=[];
+        var y=1;
+        lie();
+        $(".ye p").html(y)
+        $(".ye1").click(function () {
+            if(y==1){
+                y=1
+            }else  {
+                y--;
+            }
+            showData(y);
+            $(".ye p").html(y)
+        })
+        $(".ye2").click(function () {
+                y++;
+            showData(y);
+            $(".ye p").html(y)
+        })
+        function lie () {
+            $(".list").html("");
+            var  obj =new Object();
+            var str = JSON.stringify(obj);
+            $.ajax({
+                url:"http://localhost:8080/product/GetProductsByPage_get",
+                data:{
+                    pagesize:100,
+                    pageindex:1,
+                },
+                type:"get",
+                dataType:"json",
+                success:function (data) {
+                    for(var i=0;i<data.length;i++) {
+                        if (data[i].Type != "pinglun"&&data[i].Type != null) {
+                            arrlist.push(data[i]);
+                        }
+                    }
+                    showData(y);
+                }
+            })
+        }
+        function  showData(index) {
+            $(".list").html("");
+            for(var i=7*(index-1);i<index*7-1;i++){
+                var  obj =JSON.parse(arrlist[i].Data);
+                console.log(obj);
+                var list1 = $(".list").append(" <ul class=\"listul\"><li class=\"listid\">" + arrlist[i].Id + "</li>" +
+                        "<li class=\"listtype\">" + arrlist[i].Type + "</li>" +
+                        "<li class=\"listpic\"><img src='webimages/images_index/" + obj.src + "' </li>" +
+                        "<li class=\"listname\">" + obj.name + "</li>" +
+                        "<li class=\"listwords\"><p>" + obj.words + "</p></li>" +
+                        "<li class=\"listprice\">" + obj.price + "元/斤</li> </ul>");
+                }
+        }
+    })
+
+</script>
+</body>
+</html>

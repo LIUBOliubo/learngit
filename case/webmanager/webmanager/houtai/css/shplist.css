@@ -1,0 +1,329 @@
+@charset "UTF-8";
+/* CSS Document */
+body, p, dl, ul, ol, h1, h2, h3, dt, dd, fieldset, legend {
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style: none; }
+
+em, i {
+  font-style: normal; }
+
+input {
+  border: 0; }
+
+img {
+  display: block;
+  border: 0; }
+
+a {
+  text-decoration: none; }
+
+body {
+  font: 12px "微软雅黑"; }
+
+body {
+  height: 800px; }
+
+.topbox {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  background: lightcyan;
+  overflow: hidden; }
+
+.top {
+  width: 800px;
+  height: 40px;
+  background: lightgoldenrodyellow;
+  margin: 0 auto; }
+
+.topul {
+  width: 790px;
+  padding: 4px;
+  margin-top: 4px;
+  float: left;
+  height: 40px; }
+
+.topul .topid {
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: blueviolet;
+  font-weight: 600;
+  text-align: center;
+  float: left; }
+
+.topul .toptype {
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: blueviolet;
+  font-weight: 600;
+  text-align: center;
+  float: left; }
+
+.topul .toppic {
+  width: 250px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: blueviolet;
+  font-weight: 600;
+  text-align: center;
+  float: left; }
+
+.topul .topname {
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: blueviolet;
+  font-weight: 600;
+  text-align: center;
+  float: left; }
+
+.topul .topwords {
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: blueviolet;
+  font-weight: 600;
+  text-align: center;
+  float: left; }
+
+.topul .topprice {
+  width: 50px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: blueviolet;
+  font-weight: 600;
+  text-align: center;
+  float: left; }
+
+.listbox {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  background: lightcyan;
+  overflow: hidden; }
+
+.list {
+  width: 800px;
+  height: 50px;
+  background: lightgoldenrodyellow;
+  margin: 0 auto; }
+
+.listul {
+  width: 790px;
+  padding: 4px;
+  margin-top: 4px;
+  float: left;
+  height: 120px;
+  background: lightgoldenrodyellow; }
+
+.listul .listid {
+  width: 80px;
+  height: 120px;
+  line-height: 120px;
+  font-size: 12px;
+  color: black;
+  font-weight: 600;
+  text-align: center;
+  float: left;
+  color: blueviolet; }
+
+.listul .listtype {
+  width: 80px;
+  height: 120px;
+  line-height: 120px;
+  font-size: 12px;
+  color: black;
+  font-weight: 600;
+  text-align: center;
+  float: left;
+  color: green; }
+
+.listul .listpic img {
+  width: 200px;
+  height: 120px;
+  display: block; }
+
+.listul .listpic {
+  width: 250px;
+  height: 120px;
+  line-height: 120px;
+  font-size: 12px;
+  color: black;
+  font-weight: 600;
+  text-align: center;
+  float: left; }
+
+.listul .listname {
+  width: 100px;
+  height: 120px;
+  line-height: 120px;
+  font-size: 12px;
+  color: black;
+  font-weight: 600;
+  text-align: center;
+  float: left; }
+
+.listul .listwords {
+  width: 200px;
+  height: 120px;
+  line-height: 20px;
+  font-size: 12px;
+  color: black;
+  font-weight: 600;
+  text-align: center;
+  float: left;
+  color: #1abc9c;
+  padding: 40px 10px; }
+
+.listul .listprice {
+  width: 50px;
+  height: 120px;
+  line-height: 120px;
+  font-size: 12px;
+  color: black;
+  font-weight: 600;
+  text-align: center;
+  float: left;
+  color: red; }
+
+.ye {
+  width: 200px;
+  height: 20px;
+  margin: 0 auto; }
+
+.ye p {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  color: chartreuse;
+  font-size: 12px;
+  font-weight: 700;
+  background: honeydew;
+  display: inline-block;
+  text-align: center; }
+
+.ye i {
+  display: block;
+  width: 56px;
+  height: 20px;
+  float: left;
+  line-height: 10px; }
+
+.ye .ye1 {
+  width: 70px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  float: left;
+  background: palevioletred;
+  border: none;
+  margin-right: 4px; }
+
+.ye .ye2 {
+  width: 70px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  float: right;
+  background: palevioletred;
+  border: none; }
+
+/*-----创建商品信息-----*/
+.creatbox {
+  width: 500px;
+  height: 600px;
+  margin: 0 auto;
+  background: lightcyan;
+  border: 1px dashed pink;
+  border-radius: 20px;
+  padding: 20px 20px; }
+
+.creatbox h2 {
+  font-size: 20px;
+  color: aqua;
+  text-align: center;
+  line-height: 30px;
+  height: 30px; }
+
+.creatbox i {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  float: left;
+  width: 200px;
+  font-size: 20px;
+  margin: 20px 0; }
+
+.creatbox input {
+  width: 290px;
+  height: 40px;
+  line-height: 40px;
+  float: left;
+  background: lightcyan;
+  border: 1px solid rebeccapurple;
+  border-radius: 4px;
+  margin: 20px 0; }
+
+.creatbox button {
+  width: 150px;
+  text-align: center;
+  border: none;
+  line-height: 40px;
+  height: 40px;
+  background: tan;
+  margin-left: 175px;
+  border-radius: 30px;
+  font-weight: 600; }
+
+/*------删除商品信息--------------*/
+.deletebox {
+  width: 300px;
+  height: 100px;
+  margin: auto;
+  background: lightpink;
+  padding: 10px 10px;
+  margin-top: 200px;
+  border-radius: 3px; }
+
+.deletebox i {
+  display: block;
+  width: 100px;
+  float: left;
+  height: 40px;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: center; }
+
+.deletebox #txtid {
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  background: lightgrey;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  float: left; }
+
+.deletebox #bt1 {
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: cornflowerblue;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  margin: 20px 0 0 100px;
+  border-radius: 5px; }
+
+/*# sourceMappingURL=shplist.css.map */

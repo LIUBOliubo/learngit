@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建产品</title>
+    <link rel="stylesheet" href="css/shplist.css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+<div class="creatbox">
+    <h2>美货到水果商城--商品信息填写</h2>
+    <i>商品编号（ID）</i> <input type="text" id="txtid"/><br/><br/>
+    <i>商品分类（Type）</i> <input type="text" id="txttype"/><br/><br/>
+    <i>商品价格（Price)</i>  <input type="text" id="txtprice"/><br/><br/>
+    <i>商品图片（Src）</i> <input type="text" id="txtsrc"/><br/><br/>
+    <i>商品名称（Name）</i><input type="text" id="txtname"/><br/><br/>
+    <i>商品信息（Words）</i> <input type="text" id="txtwords"/><br/><br/>
+    <button id="chuang">CREATE</button>
+    <script>
+
+        $("#chuang").click(function () {
+            chuan();
+        });
+         function chuan(){
+            var dataJsonOb={
+                "price":$("#txtprice").val(),
+                "src":$("#txtsrc").val(),
+                "name":$("#txtname").val(),
+                "words":$("#txtwords").val()
+            }
+            var dataJsonStr=JSON.stringify(dataJsonOb);
+            $.ajax({
+                url:"http://localhost:8080/product/CreateUpdateProduct_post",
+                data:{
+                    "Id":$("#txtid").val(),
+                    "Type":$("#txttype").val(),
+                    "datajson":dataJsonStr
+                },
+                success:function(data){
+                    if(data==1){
+                        alert("创建成功");
+                    }else{
+                        alert("创建失败");
+                    }
+                },
+                error:function(){
+                    alert("ajax error");
+                },
+                dataType:"json",
+                type:"post"
+            })
+        }
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <script src="js/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+</head>
+<body>
+<div class="headerbox">
+    <div class="header">
+        <div class="h_nav1">
+            <span>欢迎光临本店！</span><a href="login_1.html">请登录</a><a href="login_2.html">免费注册</a>
+        </div>
+        <div class="h_nav2">
+            <ul>
+                <li class="h_1">
+                    <a href="#">我的信息<b></b></a>
+                    <div class="t1">
+                        <a href="#">已买到的宝贝</a>
+                        <a href="#">我的地址管理</a>
+                    </div>
+                </li>
+                <li class="h_2">
+                    <a href="#" style="color:#c40000;"><b></b>购物车</a>
+                </li>
+                <li class="h_3" >
+                    <a href="#">收藏夹<b></b></a><br>
+                    <div class="t3">
+                        <a href="#">收藏的宝贝</a>
+                    </div>
+                </li>
+                <li class="h_4">
+                    <a href="#"><b></b>微网站<span></span></a><br>
+                    <div class="t4">
+                        <a href="#"><img src="images/h_2_w.png"/></a>
+                    </div>
+
+                </li>
+                <li class="h_5">
+                    <a href="#">服务中心<span></span></a>
+                    <div class="t5">
+                        <div class="t5_1">
+                            <h1>客服:</h1>
+                            <a href="#">售后流程</a> <a href="#">购物流程</a><br>
+                            <a href="#">订购方式</a> <a href="#">常见问题</a><br>
+                        </div>
+                        <div class="t5_2">
+                            <h1>帮助:</h1>
+                            <a href="#" >帮助中心</a>
+                        </div>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="liubox">
+    <div class="liu">
+        <h2 ><a href="index.html"><img src="images/shopcar.png" style="width: 1200px;height: 120px;"></a>></h2>
+    </div>
+</div>
+<script>
+    $(".liubox").css({"width":"100%","height":"120px"});
+    $(".liu").css({"width":"1200px","height":"120px","margin":"0 auto"})
+    $(".liu h2").css({"width":"1200px","height":"120px;"})
+</script>
+<div class="carbox">
+    <div class="car">
+        <div class="cartop">
+            <ul class="carlist">
+                <li class="carcheck"><input type="checkbox" >全选</li>
+                <li class="carpic">商品</li>
+                <li class="carcode">数量</li>
+                <li class="carpric">本店价</li>
+                <li class="carsum">小计</li>
+                <li class="cardo">操作</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $(".carbox").css({"width":"100%","height":"auto","background":"#eee"});
+    $(".car").css({"width":"1104px","height":"auto","margin":"0 auto","padding":"20px 0","overflow":"hidden"});
+    $(".carlist").css({"width":"1100px","height":"14px","border":"1px solid #666","border-bottom":"2px solid #666","float":"left","padding":"10px 0"});
+    $(".carcheck").css({"color":"#588585","width":"100px","height":"14px","text-align":"center","float":"left"});
+    $(".carcheck input").css({"width":"14px","height":"14px","float":"left",});
+    $(".carpic").css({"width":"350px","height":"14px","color":"#588585","float":"left","text-align":"center"});
+    $(".carcode").css({"width":"100px","height":"14px","color":"#588585","float":"left","text-align":"center",});
+    $(".carpric").css({"width":"200px","height":"14px","color":"#588585","float":"left","text-align":"center",});
+    $(".carsum").css({"width":"150px","height":"14px","color":"#588585","float":"left","text-align":"center",})
+    $(".cardo").css({"width":"150px","height":"14px","color":"#588585","float":"left","text-align":"center",})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<div class="thingbox">
+    <div class="thing">
+
+    </div>
+</div>
+<div class="maibox">
+    <div class="mai">
+        <h2>进口水果</h2><h3>国产水果</h3>
+        <ul class="mailist">
+
+
+        </ul>
+
+    </div>
+</div>
+<script>
+    $(".maibox").css({"width":"100%","height":"auto","margin":"0 auto","padding":"10px","overflow":"hidden"});
+    $(".mai").css({"width":"1204px","height":"auto","margin":"0 auto","overflow":"hidden"});
+    $(".mailist").css({"width":"1204px","height":"auto","margin":"0 auto","overflow":"hidden","float":"left","border":"1px solid #666"});
+    $(".mai h2").css({"width":"150px","height":"30px","float":"left","border-bottom":"2px solid red","line-height":"30px","font-size":"16px","text-align":"center","background":"red"})
+    $(".mai h3").css({"width":"150px","height":"30px","float":"left","border-bottom":"2px solid red","line-height":"30px","font-size":"16px","text-align":"center"})
+        var x="qt";
+    more(x);
+    function more(x){
+        var  obj =new Object();
+        var str = JSON.stringify(obj);
+        $.ajax({
+            url:"http://localhost:8080/product/GetProductsByPage_get",
+            data:{
+                pagesize:8,
+                pageindex:1,
+                type:x
+            },
+            type:"get",
+            dataType:"json",
+            success:function (data) {
+                for(var i=0;i<data.length;i++) {
+                         obj = eval("(" + data[i].Data + ")");
+                   /* console.log(obj);*/
+                        var mai = $(".mailist").append("<li class=\"jd1\"><a href=\"#\"><img title=\'"+data[i].Id+"\' style=\'width: 200px;height: 200px;\' " +
+                                "src=\"images/images_index/" + obj.src + "\"/> </a><br><br><p style='font-size: 12px;color:#585;line-height: 20px;'>" + obj.words + "</p> " +
+                                "<i style=\'12px;color: rebeccapurple;line-height: 30px;\'>商城价：<em style=\'color: red;font-size: 20px;font-weight: 600;\'>" + obj.price + "</em>/斤</i> " +
+                                "<button id=\""+data[i].Id+"\"  style=\"width:30px;height:30px;float:right;background:url('images/index.png') no-repeat 0 0;border: none;\"></button>" +
+                                "</li>");
+
+                }
+                    $(".mailsit li").css({
+                        "width": "239px",
+                        "height": "322px",
+                        "float": "left",
+                        "border-right": "1px solid #eee",
+                        "border-bottom": "1px solid #eee"
+                    })
+                    $(".mailist .jd1").css({
+                        "width": "200px",
+                        "height": "282px",
+                        "float": "left",
+                        "padding": "19px",
+                        "border-right": "1px solid #eee",
+                        "border-bottom": "1px solid #eee"
+                    });
+                }
+
+        })
+    }
+    var imglist2=$(".mailist img");
+    $(imglist2).each(function () {
+        $(this).css({"width":"200px","height":"200px","display":"block","float":"left","border":"none"});
+    });
+        $(".mai h2").click(function () {
+            $(".mai h3").css({"background":"#fff"})
+            $(this).css({"background":"red"})
+            $(".mailist").html("");
+                more(x)
+        })
+
+    $(".mai h3").click(function () {
+        $(".mai h2").css({"background":"#fff"})
+        $(this).css({"background":"red"})
+        $(".mailist").html("");
+        more("jksg")
+    })
+
+
+    $(".thingbox").css({"width":"1104px","height":"auto","margin":"0 auto","padding":"10px","overflow":"hidden"});
+    $(".thing").css({"width":"1104px","height":"auto","margin":"0 auto","overflow":"hidden"});
+
+   $("body").on("click",".mailist button",function(){
+       var x=$(this).attr("id");
+       var  obj =new Object();
+       var str = JSON.stringify(obj);
+       $.ajax({
+           url:"http://localhost:8080/product/GetProductById_get?id="+x,
+           type:"get",
+           dataType:"json",
+           success:function (data) {
+                       obj = eval("("+data.Data+")");
+                       var thingbox = $(".thingbox").append("<ul class=\"thinglist\" id=\'"+data.Id+"\'>"+
+                               " <li class=\"thingcheck\"><input type=\"checkbox\" ></li>"+
+                               "<li class=\"thingpic\"><img  style=\"width: 100px;height: 120px;float: left;margin: 14px 0;\"src=\'images/images_index/"+obj.src+"\' ><p>"+obj.words+"</p></li>"+
+                               "<li class=\"thingcode\"><button class='b2'>—</button>&nbsp;<i class=\'code\'>1</i>&nbsp;<button class='b1'>+</button></li>"+
+                               "<li class=\"thingpric\">"+obj.price+"</li>"+
+                               " <li class=\"thingsum\"></li>"+
+                               "<li class=\"thingdo\"><button class='bbt'> 删除</button></li></ul>");
+               $(".thinglist").css({"width":"1100px","height":"150px","border":"1px solid #666","border-bottom":"2px solid #666","float":"left","padding":"10px 0"});
+               $(".thingcheck").css({"color":"#588585","width":"100px","height":"150px","text-align":"center","float":"left",});
+               $(".thingcheck input").css({"width":"14px","height":"14px","float":"left","margin-top":"60px"});
+               $(".thingpic").css({"width":"350px","height":"150px","color":"#588585","float":"left","text-align":"center"});
+               $(".thingpic p").css({"margin-top":"50px"})
+               $(".thingcode").css({"width":"100px","height":"150px","color":"#588585","float":"left","text-align":"center","margin-top":"60px"});
+               $(".thingpric").css({"width":"200px","height":"150px","color":"#588585","float":"left","text-align":"center","margin-top":"60px"});
+               $(".thingsum").css({"width":"150px","height":"14px","color":"#588585","float":"left","text-align":"center","margin-top":"60px"})
+               $(".thingdo").css({"width":"150px","height":"14px","color":"#588585","float":"left","text-align":"center","margin-top":"60px"})
+               $(".thingsum").html(obj.price);
+
+           }
+       })
+    })
+
+
+    $("body").on("click",".thingdo button",function () {
+             $(this).parent().parent().remove();
+    })
+    $("body").on("click",".thingcode .b2",function () {
+
+
+    })
+    $("body").on("click",".thingcode .b1",function () {
+
+    })
+
+</script>
+
+
+
+
+
+
+
+
+
+<div class="bottombox">
+    <div class="bottom1">
+        <div class="bottom1_1">
+            <h1>关于我们</h1>
+            <ul>
+                <li><a href="#">关于我们</a> </li>
+                <li><a href="#">客户服务</a> </li>
+            </ul>
+        </div>
+        <div class="bottom1_2">
+            <h1>新手上路</h1>
+            <ul>
+                <li><a href="#">注册会员</a> </li>
+                <li><a href="#">如何购买</a> </li>
+                <li><a href="#">确认付款</a> </li>
+            </ul>
+        </div>
+        <div class="bottom1_3">
+            <h1>购物指南</h1>
+            <ul>
+                <li><a href="#">晒单评价</a> </li>
+                <li><a href="#">账户安全</a> </li>
+
+            </ul>
+        </div>
+        <div class="bottom1_4">
+            <h1>配送方式</h1>
+            <ul>
+                <li><a href="#">配送标准</a> </li>
+                <li><a href="#">配送范围</a> </li>
+            </ul>
+        </div>
+        <div class="bottom1_5">
+            <h1>售后服务</h1>
+            <ul>
+                <li><a href="#">退换货政策</a> </li>
+                <li><a href="#">退换货流程</a> </li>
+            </ul>
+        </div>
+        <div class="bottom1_6">
+            <h2>400—6622—861</h2>
+            <h3>（周一至周日 9:00-18:30）</h3>
+            <span><a href="#">电话咨询热线</a> </span>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="foot">
+    <div class="foot1">
+        <div class="foot1_1">
+            <ul>
+                <li><a href="#">关于我们</a> </li>
+                <li><a href="#">联系我们</a> </li>
+                <li><a href="#">友情链接</a> </li>
+                <li style="border: none;"><a href="#">帮助中心</a> </li>
+            </ul>
+        </div>
+        <div class="foot1_2">
+            <p>ICP备案证书号：豫ICP备16005952号 &copy;2015-2016 美货到水果商城 版权所有，并保留所有权利。</p>
+        </div>
+        <div class="foot1_3">
+            <p>客服热线：400—6622-861 E-mail:vip@meihuodao.com<span><img src="images/login_foot_1.gif"></span><img src="images/login_foot_2.gif"/> <a href="#">81709669</a><img src="images/login_foot_2.gif"/> <a href="#">81709669</a></p>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+    var width1=document.body.clientWidth||document.documentElement.clientWidth;
+    var height1=document.body.clientHeight||document.documentElement.clientHeight;
+    var fixbox1=document.createElement("div");
+    fixbox1.style.width="35px";
+    fixbox1.style.height=height1+"px";
+    fixbox1.style.position="fixed";
+    fixbox1.style.background="#222";
+    fixbox1.style.top=0;
+    fixbox1.style.left=width1-35+"px";
+    document.body.appendChild(fixbox1);
+
+    var iFix=document.createElement("div");
+    iFix.style.width="35px";
+    iFix.style.height="420px";
+    iFix.style.left="left";
+    iFix.style.marginTop="178px";
+    fixbox1.appendChild(iFix);
+
+    var ihead=document.createElement("img");
+    ihead.src="images/user_head.png";
+    ihead.style.width="35px";
+    ihead.style.height="35px";
+    ihead.style.float="left";
+    iFix.appendChild(ihead);
+
+    var ispan=document.createElement("span");
+    ispan.style.display="block";
+    ispan.style.marginTop="30px";
+    ispan.style.float="left";
+    ispan.style.height="50px";
+    ispan.style.width="35px";
+    ispan.innerHTML="<a href=\'#\' style='color: #fff;'>在线销售</a>";
+    ispan.style.fontSize="12px";
+    ispan.style.lineHeight="25px";
+    ispan.style.background="red";
+    ispan.style.textAlign="center";
+    iFix.appendChild(ispan);
+
+    var iCar=document.createElement("div");
+    iCar.style.marginTop="30px";
+    iCar.style.height="130px";
+    iCar.style.width="35px";
+
+    iCar.style.background="green";
+    iCar.style.float="left";
+    iFix.appendChild(iCar);
+
+    var iCara=document.createElement("a");
+    iCara.style.display="block";
+    iCara.style.width="35px";
+    iCara.href="#";
+    iCara.style.overflow="hidden";
+    iCara.style.height="35px";
+    iCara.style.float="left";
+    iCara.style.background="url('images/site_bar.png') no-repeat 0 -32px";
+    iCar.appendChild(iCara);
+
+    var iCarw=document.createElement("a");
+    iCarw.style.display="block";
+    iCarw.style.width="15px";
+    iCarw.style.padding="5px 10px"
+    iCarw.href="#";
+    iCarw.innerHTML="购物车";
+    iCarw.style.lineHeight="16px";
+    iCarw.style.textAlign="center";
+    iCarw.style.overflow="hidden";
+    iCarw.style.height="80px";
+    iCarw.style.float="left";
+    iCarw.style.color="#fff";
+    iCarw.style.fontSize="12px";
+    iCar.appendChild(iCarw);
+
+    var is=document.createElement("div");
+    is.style.height="45px";
+    is.style.width="35px";
+    is.style.position="relative";
+    is.style.overflow="hidden"
+    is.style.float="left";
+    is.style.marginTop="20px";
+    is.style.background="green";
+    iFix.appendChild(is);
+
+    var ishou=document.createElement("div");
+    ishou.style.height="90px";
+    ishou.style.width="35px";
+    ishou.style.position="absolute";
+    ishou.style.overflow="hidden"
+    ishou.style.float="left";
+    ishou.style.top="0";
+    ishou.style.left="0";
+    ishou.style.background="green";
+    is.appendChild(ishou);
+
+    var ishowa=document.createElement("a");
+    ishowa.style.display="block";
+    ishowa.style.width="35px";
+    ishowa.href="#";
+    ishowa.style.overflow="hidden";
+    ishowa.style.height="25px";
+    ishowa.style.float="left";
+    ishowa.style.background="url('images/site_bar.png') no-repeat 0 -108px";
+    ishou.appendChild(ishowa);
+
+    var ishoua=document.createElement("a");
+    ishoua.style.display="block";
+    ishoua.style.width="35px";
+    ishoua.href="#";
+    ishoua.innerHTML="收藏";
+    ishoua.style.lineHeight="20px";
+    ishoua.style.textAlign="center";
+    ishoua.style.overflow="hidden";
+    ishoua.style.height="20px";
+    ishoua.style.float="left";
+    ishoua.style.color="#fff";
+    ishoua.style.fontSize="12px";
+    ishou.appendChild(ishoua);
+
+    var ishoub=document.createElement("a");
+    ishoub.style.display="block";
+    ishoub.style.width="25px";
+    ishoub.style.padding="0 5px"
+    ishoub.href="#";
+    ishoub.innerHTML="收藏商品";
+    ishoub.style.lineHeight="22px";
+    ishoua.style.textAlign="center";
+    ishoub.style.overflow="hidden";
+    ishoub.style.height="45px";
+    ishoub.style.float="left";
+    ishoub.style.color="#fff";
+    ishoub.style.fontSize="12px";
+    ishou.appendChild(ishoub);
+
+    is.onmouseover=function () {
+        ishou.style.top="-45px";
+        ishou.style.background="red";
+    }
+    is.onmouseout=function () {
+        ishou.style.top="0px";
+        ishou.style.background="none";
+    }
+    var is1=document.createElement("div");
+    is1.style.height="45px";
+    is1.style.width="35px";
+    is1.style.position="relative";
+    is1.style.overflow="hidden"
+    is1.style.float="left";
+    is1.style.marginTop="20px";
+    is1.style.background="green";
+    iFix.appendChild(is1);
+
+    var isao=document.createElement("div");
+    isao.style.height="90px";
+    isao.style.width="35px";
+    isao.style.position="absolute";
+    isao.style.overflow="hidden"
+    isao.style.float="left";
+    isao.style.top="0";
+    isao.style.left="0";
+    ishou.style.background="green";
+    is1.appendChild(isao);
+
+    var isaoa=document.createElement("a");
+    isaoa.style.display="block";
+    isaoa.style.width="35px";
+    isaoa.href="#";
+    isaoa.style.overflow="hidden";
+    isaoa.style.height="45px";
+    isaoa.style.float="left";
+    isaoa.style.background="url('images/site_bar.png') no-repeat 0 -135px";
+    isao.appendChild( isaoa);
+
+    var  isaob=document.createElement("a");
+    isaob.style.display="block";
+    isaob.style.width="25px";
+    isaob.style.padding="0 5px"
+    isaob.href="#";
+    isaob.innerHTML="官方微信";
+    isaob.style.lineHeight="22px";
+    isaob.style.textAlign="center";
+    isaob.style.overflow="hidden";
+    isaob.style.height="45px";
+    isaob.style.float="left";
+    isaob.style.color="#fff";
+    isaob.style.fontSize="12px";
+    isao.appendChild( isaob);
+
+    is1.onmouseover=function () {
+        isao.style.top="-45px";
+        isao.style.background="red";
+    }
+    is1.onmouseout=function () {
+        isao.style.top="0px";
+        isao.style.background="none";
+    }
+    var move1=document.getElementsByClassName("navb_1");
+    var move2=document.getElementsByClassName("navb_1_1");
+    var time;
+    move1.onmouseover=function () {
+        move2.style.display="block";
+    }
+    move1.onmouseout=function () {
+        move2.style.display="block";
+        time=setTimeout(function () {
+            move2.style.display="none";
+        },2000)
+    }
+</script>
+
+</body>
+</html>
